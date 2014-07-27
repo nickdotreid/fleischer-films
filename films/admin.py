@@ -28,6 +28,14 @@ class FilmAdmin(admin.ModelAdmin):
             	'tags',
             	)
         }),
+        ("Copyright",{
+        	'classes':'collapsiable',
+        	'fields':(
+        		'copyright_status',
+				'copyright_status_source',
+				'copyright_claimant',
+        		),
+        	})
     )
 
     inlines = [

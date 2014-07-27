@@ -48,6 +48,10 @@ class Film(models.Model):
     have_it = models.BooleanField(default=False)
     work_notes = models.CharField(null=True, blank=True, max_length=50)
 
+    copyright_status = models.CharField(null=True, blank=True, max_length=250)
+    copyright_status_source = models.CharField(null=True, blank=True, max_length=250)
+    copyright_claimant = models.CharField(null=True, blank=True, max_length=250)
+
     def __unicode__(self):
     	if self.year:
     		return "%s (%d)" % (self.title, self.year)
