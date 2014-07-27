@@ -38,10 +38,15 @@ class Film(models.Model):
     year = models.IntegerField(choices=YEARS, max_length=4, null=True, blank=True)
     series = models.ForeignKey(Series, null=True, blank=True)
 
+
+
     description = models.CharField(null=True, blank=True, max_length=5000)
     duration = DurationField(null=True, blank=True)
 
     tags = models.ManyToManyField(Tag, blank=True, related_name='films')
+
+    have_it = models.BooleanField(default=False)
+    work_notes = models.CharField(null=True, blank=True, max_length=50)
 
     def __unicode__(self):
     	if self.year:

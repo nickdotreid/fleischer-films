@@ -22,6 +22,8 @@ class FilmAdmin(admin.ModelAdmin):
         }),
         ("Notes", {
             'fields': (
+            	'have_it',
+            	'work_notes',
             	'description',
             	'tags',
             	)
@@ -34,7 +36,7 @@ class FilmAdmin(admin.ModelAdmin):
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         formfield = super(FilmAdmin, self).formfield_for_dbfield(db_field, **kwargs)
-        if db_field.name == 'description':
+        if db_field.name in ['description', 'work_notes']:
             formfield.widget = forms.Textarea(attrs=formfield.widget.attrs)
         return formfield
 
