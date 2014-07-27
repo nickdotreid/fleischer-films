@@ -54,6 +54,7 @@ class Link(models.Model):
     film = models.ForeignKey(Film)
     link_type = models.ForeignKey(LinkType)
     href = models.CharField(max_length=250)
+    description = models.CharField(null=True, blank=True, max_length=500)
 
     def __unicode__(self):
         return "%s, (%s)" % (self.film.title, self.link_type.name)
