@@ -16,7 +16,7 @@ class Film(models.Model):
     release_date = models.DateField(null=True, blank=True)
     year = models.IntegerField(choices=YEARS, max_length=4, null=True, blank=True)
 
-    description = models.CharField(null=True, blank=False, max_length=5000)
+    description = models.CharField(null=True, blank=True, max_length=5000)
     duration = DurationField(null=True, blank=True)
 
     def __unicode__(self):
