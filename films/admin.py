@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 
-from films.models import Film, Tag, LinkType, Link
+from films.models import Film, Tag, LinkType, Link, Series
 # Register your models here.
 
 class LinkInline(admin.TabularInline):
@@ -13,10 +13,18 @@ class FilmAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('title', ('year', 'release_date'), 'duration')
+            'fields': (
+            	'title',
+            	'series',
+            	('year', 'release_date'),
+            	'duration',
+            	)
         }),
         ("Notes", {
-            'fields': ('description','tags')
+            'fields': (
+            	'description',
+            	'tags',
+            	)
         }),
     )
 
@@ -31,5 +39,6 @@ class FilmAdmin(admin.ModelAdmin):
         return formfield
 
 admin.site.register(Film, FilmAdmin)
+admin.site.register(Series)
 admin.site.register(LinkType)
 admin.site.register(Tag)
