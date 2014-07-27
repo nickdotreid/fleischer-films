@@ -16,3 +16,4 @@ Thumbs.db
 /static
 /media
 /.anvil
+/pgdb
