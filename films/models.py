@@ -34,4 +34,27 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class LinkType(models.Model):
+    class Meta:
+        verbose_name = 'LinkType'
+        verbose_name_plural = 'LinkTypes'
+
+    name = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.name
+    
+
+class Link(models.Model):
+    class Meta:
+        verbose_name = 'Link'
+        verbose_name_plural = 'Links'
+
+    film = models.ForeignKey(Film)
+    link_type = models.ForeignKey(LinkType)
+    href = models.CharField(max_length=250)
+
+    def __unicode__(self):
+        return "%s, (%s)" % (self.film.title, self.link_type.name)
     
