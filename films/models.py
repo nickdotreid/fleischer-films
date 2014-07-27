@@ -24,3 +24,14 @@ class Film(models.Model):
     		return "%s (%d)" % (self.title, self.year)
         return self.title
     
+class Tag(models.Model):
+    class Meta:
+        verbose_name = 'Tag'
+        verbose_name_plural = 'Tags'
+
+    films = models.ManyToManyField(Film, related_name='tags')
+    name = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.name
+    
