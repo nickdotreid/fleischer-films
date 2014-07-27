@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django import forms
 
 from films.models import Film, Tag, LinkType, Link
 # Register your models here.
@@ -8,19 +9,26 @@ class LinkInline(admin.TabularInline):
 
 class FilmAdmin(admin.ModelAdmin):
     date_hierarchy = 'release_date'
+    filter_horizontal = ('tags',)
 
     fieldsets = (
         (None, {
             'fields': ('title', ('year', 'release_date'), 'duration')
         }),
         ("Notes", {
-            'fields': ('description',)
+            'fields': ('description','tags')
         }),
     )
 
     inlines = [
     	LinkInline,
     ]
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        formfield = super(FilmAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        if db_field.name == 'description':
+            formfield.widget = forms.Textarea(attrs=formfield.widget.attrs)
+        return formfield
 
 admin.site.register(Film, FilmAdmin)
 admin.site.register(LinkType)

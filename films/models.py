@@ -7,6 +7,16 @@ YEARS = []
 for y in range(1915, (datetime.now().year + 1)):
 	YEARS.append((y,y))
 
+class Tag(models.Model):
+    class Meta:
+        verbose_name = 'Tag'
+        verbose_name_plural = 'Tags'
+
+    name = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.name
+
 class Film(models.Model):
     class Meta:
         verbose_name = 'Film'
@@ -19,21 +29,12 @@ class Film(models.Model):
     description = models.CharField(null=True, blank=True, max_length=5000)
     duration = DurationField(null=True, blank=True)
 
+    tags = models.ManyToManyField(Tag, blank=True, related_name='films')
+
     def __unicode__(self):
     	if self.year:
     		return "%s (%d)" % (self.title, self.year)
         return self.title
-    
-class Tag(models.Model):
-    class Meta:
-        verbose_name = 'Tag'
-        verbose_name_plural = 'Tags'
-
-    films = models.ManyToManyField(Film, related_name='tags')
-    name = models.CharField(max_length=50)
-
-    def __unicode__(self):
-        return self.name
 
 class LinkType(models.Model):
     class Meta:
