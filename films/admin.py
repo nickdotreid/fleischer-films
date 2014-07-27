@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django import forms
 
-from films.models import Film, Tag, LinkType, Link, Series
-# Register your models here.
+from films.models import Film, Tag, LinkType, Link, Series, Distributor
 
 class LinkInline(admin.TabularInline):
     model = Link
@@ -23,6 +22,7 @@ class FilmAdmin(admin.ModelAdmin):
         ("Notes", {
             'fields': (
             	'have_it',
+            	('current_distributor','original_distributor'),
             	'work_notes',
             	'description',
             	'tags',
@@ -50,5 +50,6 @@ class FilmAdmin(admin.ModelAdmin):
 
 admin.site.register(Film, FilmAdmin)
 admin.site.register(Series)
+admin.site.register(Distributor)
 admin.site.register(LinkType)
 admin.site.register(Tag)

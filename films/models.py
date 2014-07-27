@@ -17,6 +17,17 @@ class Tag(models.Model):
     def __unicode__(self):
         return self.name
 
+class Distributor(models.Model):
+    class Meta:
+        verbose_name = 'Distributor'
+        verbose_name_plural = 'Distributors'
+
+    name = models.CharField(max_length=150)
+
+    def __unicode__(self):
+        return self.name
+    
+
 class Series(models.Model):
     class Meta:
         verbose_name = 'Series'
@@ -38,7 +49,8 @@ class Film(models.Model):
     year = models.IntegerField(choices=YEARS, max_length=4, null=True, blank=True)
     series = models.ForeignKey(Series, null=True, blank=True)
 
-
+    current_distributor = models.ForeignKey(Distributor, related_name="current_films", null=True, blank=True)
+    original_distributor = models.ForeignKey(Distributor, related_name="original_films", null=True, blank=True)
 
     description = models.CharField(null=True, blank=True, max_length=5000)
     duration = DurationField(null=True, blank=True)
