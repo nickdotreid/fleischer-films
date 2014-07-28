@@ -25,7 +25,7 @@ class ProductionCompany(models.Model):
     name = models.CharField(max_length=150)
 
     def __unicode__(self):
-        pass
+        return self.name
     
 
 class Distributor(models.Model):
