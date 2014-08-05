@@ -1,14 +1,29 @@
 from django.contrib import admin
 from django import forms
 
+from suit.widgets import SuitDateWidget
+from suit_redactor.widgets import RedactorWidget
+
 from films.models import Film, Tag, LinkType, Link, Series, Distributor, ProductionCompany
 
 class LinkInline(admin.TabularInline):
     model = Link
 
+class FilmAdminForm(forms.ModelForm):
+    class Meta:
+        widgets = {
+            'description': RedactorWidget(editor_options={'lang': 'en'})
+        }
+
 class FilmAdmin(admin.ModelAdmin):
     date_hierarchy = 'release_date'
     filter_horizontal = ('tags',)
+
+    form = FilmAdminForm
+
+    widgets = {
+        'release_date':SuitDateWidget,
+    }
 
     fieldsets = (
         (None, {

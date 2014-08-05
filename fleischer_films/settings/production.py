@@ -146,7 +146,9 @@ INSTALLED_APPS = (
     "django.contrib.contenttypes",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.admin",
+    'suit',
+    'suit_redactor',
+    'django.contrib.admin',
     "south",
     "herokuapp",
     "films",
@@ -206,6 +208,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
 #    "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
+    'django.core.context_processors.request',
 )
 
 
