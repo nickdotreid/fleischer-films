@@ -12,18 +12,20 @@ class LinkInline(admin.TabularInline):
 class FilmAdminForm(forms.ModelForm):
     class Meta:
         widgets = {
-            'description': RedactorWidget(editor_options={'lang': 'en'})
+            'description': RedactorWidget(editor_options={'lang': 'en'}),
+            'release_date':SuitDateWidget,
         }
 
 class FilmAdmin(admin.ModelAdmin):
     date_hierarchy = 'release_date'
     filter_horizontal = ('tags',)
 
-    form = FilmAdminForm
+    search_fields = ('title', 'work_notes')
 
-    widgets = {
-        'release_date':SuitDateWidget,
-    }
+    list_display = ('title','series','year')
+    list_filter = ('tags','year','duration')
+
+    form = FilmAdminForm
 
     fieldsets = (
         (None, {
