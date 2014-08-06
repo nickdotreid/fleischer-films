@@ -20,10 +20,10 @@ class FilmAdmin(admin.ModelAdmin):
     date_hierarchy = 'release_date'
     filter_horizontal = ('tags',)
 
-    search_fields = ('title', 'work_notes')
+    search_fields = ('title', 'description', 'work_notes', 'series','tags', 'production_company')
 
     list_display = ('title','series','year')
-    list_filter = ('tags','year','duration')
+    list_filter = ('tags','year','series','production_company')
 
     form = FilmAdminForm
 
