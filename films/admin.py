@@ -4,7 +4,10 @@ from django import forms
 from suit.widgets import SuitDateWidget
 from suit_redactor.widgets import RedactorWidget
 
-from films.models import Film, Tag, LinkType, Link, Series, Distributor, ProductionCompany
+from films.models import Film, Tag, LinkType, Link, Series, Distributor, ProductionCompany, FilmLocation
+
+class FilmLocation(admin.TabularInline):
+    model = FilmLocation
 
 class LinkInline(admin.TabularInline):
     model = Link
@@ -57,6 +60,7 @@ class FilmAdmin(admin.ModelAdmin):
     )
 
     inlines = [
+        FilmLocation,
     	LinkInline,
     ]
 

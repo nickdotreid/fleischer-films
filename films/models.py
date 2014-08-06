@@ -106,4 +106,17 @@ class Link(models.Model):
 
     def __unicode__(self):
         return "%s, (%s)" % (self.film.title, self.link_type.name)
-    
+
+LOCATION_TYPES = (
+    ('youtube','YouTube'),
+    ('personal','Personal Location')
+    )
+
+class FilmLocation(models.Model):
+    film = models.ForeignKey(Film)
+    location = models.CharField(choices=LOCATION_TYPES, blank=True, null=True, max_length=150)
+    source = models.CharField(max_length=200, blank=True, null=True)
+    notes = models.CharField(max_length=2500, blank=True, null=True)
+
+    def __unicode__(self):
+        return "%s, (%s)" % (self.film.title, self.location)
