@@ -43,7 +43,7 @@ class FilmAdmin(admin.ModelAdmin):
         ("Notes", {
             'fields': (
             	'have_it',
-            	('current_distributor','original_distributor'),
+            	('original_distributor', 'current_distributor'),
             	'work_notes',
             	'description',
             	'tags',
