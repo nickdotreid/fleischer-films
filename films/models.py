@@ -20,7 +20,7 @@ class Tag(models.Model):
 class ProductionCompany(models.Model):
     class Meta:
         verbose_name = 'Production Company'
-        verbose_name_plural = 'Production Companys'
+        verbose_name_plural = 'Production Companies'
 
     name = models.CharField(max_length=150)
 
