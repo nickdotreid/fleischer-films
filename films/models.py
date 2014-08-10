@@ -85,8 +85,8 @@ class Film(models.Model):
 
 class LinkType(models.Model):
     class Meta:
-        verbose_name = 'LinkType'
-        verbose_name_plural = 'LinkTypes'
+        verbose_name = 'Link Type'
+        verbose_name_plural = 'Link Types'
 
     name = models.CharField(max_length=50)
 
