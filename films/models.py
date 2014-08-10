@@ -71,7 +71,6 @@ class Film(models.Model):
 
     tags = models.ManyToManyField(Tag, blank=True, related_name='films')
 
-    have_it = models.BooleanField(default=False)
     work_notes = models.CharField(null=True, blank=True, max_length=5000)
 
     copyright_status = models.CharField(null=True, blank=True, max_length=250)

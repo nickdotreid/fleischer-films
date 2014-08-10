@@ -42,7 +42,6 @@ class FilmAdmin(admin.ModelAdmin):
         }),
         ("Notes", {
             'fields': (
-            	'have_it',
             	('original_distributor', 'current_distributor'),
             	'work_notes',
             	'description',
