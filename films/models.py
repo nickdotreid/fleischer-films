@@ -54,6 +54,7 @@ class Film(models.Model):
     class Meta:
         verbose_name = 'Film'
         verbose_name_plural = 'Films'
+        ordering = ['title']
 
     title = models.CharField(null=False, blank=False, max_length=250)
     release_date = models.DateField(null=True, blank=True)
