@@ -23,7 +23,7 @@ class FilmAdmin(admin.ModelAdmin):
     date_hierarchy = 'release_date'
     filter_horizontal = ('tags',)
 
-    search_fields = ('title', 'description', 'work_notes', 'series','tags', 'production_company')
+    search_fields = ('title', 'description', 'work_notes', 'series__name','tags__name', 'production_company__name')
 
     list_display = ('title','series','year')
     list_filter = ('tags','year','series','production_company')
