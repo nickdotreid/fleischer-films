@@ -11,6 +11,7 @@ class Tag(models.Model):
     class Meta:
         verbose_name = 'Tag'
         verbose_name_plural = 'Tags'
+        ordering = ['name']
 
     name = models.CharField(max_length=50)
 
@@ -21,6 +22,7 @@ class ProductionCompany(models.Model):
     class Meta:
         verbose_name = 'Production Company'
         verbose_name_plural = 'Production Companies'
+        ordering = ['name']
 
     name = models.CharField(max_length=150)
 
@@ -32,6 +34,7 @@ class Distributor(models.Model):
     class Meta:
         verbose_name = 'Distributor'
         verbose_name_plural = 'Distributors'
+        ordering = ['name']
 
     name = models.CharField(max_length=150)
 
@@ -43,6 +46,7 @@ class Series(models.Model):
     class Meta:
         verbose_name = 'Series'
         verbose_name_plural = 'Series'
+        ordering = ['name']
 
     name = models.CharField(max_length=250)
 
