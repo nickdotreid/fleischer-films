@@ -25,8 +25,8 @@ class FilmAdmin(admin.ModelAdmin):
 
     search_fields = ('title', 'description', 'work_notes', 'series__name','tags__name', 'production_company__name', 'current_distributor__name', 'original_distributor__name')
 
-    list_display = ('title','series','year')
-    list_filter = ('tags','year','series')
+    list_display = ('title','series','year', 'release_date')
+    list_filter = ('tags','year', 'series')
 
     form = FilmAdminForm
 
