@@ -69,9 +69,19 @@ class FilmAdmin(admin.ModelAdmin):
             formfield.widget = forms.Textarea(attrs=formfield.widget.attrs)
         return formfield
 
+class FilmInline(admin.TabularInline):
+    model = Film
+    fields = ('title','series','year')
+    extra = 0
+
+class AdminForInlineFilm(admin.ModelAdmin):
+    inlines = [
+        FilmInline,
+    ]
+
 admin.site.register(Film, FilmAdmin)
-admin.site.register(Series)
-admin.site.register(ProductionCompany)
+admin.site.register(Series,AdminForInlineFilm)
+admin.site.register(ProductionCompany,AdminForInlineFilm)
 admin.site.register(Distributor)
 admin.site.register(LinkType)
 admin.site.register(Tag)
