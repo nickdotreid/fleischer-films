@@ -129,7 +129,7 @@ SEND_BROKEN_LINK_EMAILS = False
 
 TIME_ZONE = "UTC"
 
-LANGUAGE_CODE = "en-gb"
+LANGUAGE_CODE = "en-us"
 
 USE_I18N = True
 
