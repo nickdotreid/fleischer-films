@@ -71,7 +71,7 @@ class Film(models.Model):
     original_distributor = models.ForeignKey(Distributor, related_name="original_films", null=True, blank=True)
 
     description = models.CharField(null=True, blank=True, max_length=5000)
-    duration = DurationField(null=True, blank=True)
+    duration = DurationField(verbose_name="runtime",null=True, blank=True)
 
     tags = models.ManyToManyField(Tag, blank=True, related_name='films')
 
