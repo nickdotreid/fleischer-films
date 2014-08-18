@@ -69,19 +69,64 @@ class FilmAdmin(admin.ModelAdmin):
             formfield.widget = forms.Textarea(attrs=formfield.widget.attrs)
         return formfield
 
+admin.site.register(Film, FilmAdmin)
+
 class FilmInline(admin.TabularInline):
     model = Film
     fields = ('title','series','year')
     extra = 0
 
+def merge_models(modeladmin, request, queryset, film_property):
+    if not film_property:
+        modeladmin.message_user(request, "Merge Property NOT Configured")
+        return False
+
+    count = 0
+    models_list = list(queryset.all())
+    modelMergedTo = models_list.pop()
+    for m in models_list:    
+        count += Film.objects.extra(where=[film_property+"_id=%s"], params=[m.id]).update(**{
+            film_property:modelMergedTo,
+            })
+    modeladmin.message_user(request, "Merged %d films" % (count))
+    return modelMergedTo
+
+
+
 class AdminForInlineFilm(admin.ModelAdmin):
     inlines = [
         FilmInline,
     ]
+    actions = [
+        'merge_models'
+    ]
+    film_property = False
+    def merge_models(self, request, queryset):
+        modelMergedTo = merge_models(self, request, queryset, self.film_property)
+        queryset.exclude(id=modelMergedTo.id).delete()
+    merge_models.short_description = "Merge selected models"
 
-admin.site.register(Film, FilmAdmin)
-admin.site.register(Series,AdminForInlineFilm)
-admin.site.register(ProductionCompany,AdminForInlineFilm)
-admin.site.register(Distributor)
+class SeriesAdmin(AdminForInlineFilm):
+    film_property = 'series'
+    merge_models.short_description = "Merge selected Series"
+
+class ProductionCompanyAdmin(AdminForInlineFilm):
+    film_property = 'production_company'
+    merge_models.short_description = "Merge selected Production Company"
+
+class DistributorAdmin(admin.ModelAdmin):
+    actions = [
+        'merge_models'
+    ]
+    def merge_models(self,request,queryset):
+        modelMergedTo = merge_models(self, request, queryset, 'current_distributor')
+        modelMergedTo = merge_models(self, request, queryset, 'original_distributor')
+        queryset.exclude(id=modelMergedTo.id).delete()
+    merge_models.short_description = "Merge selected models"
+
+
+admin.site.register(Series,SeriesAdmin)
+admin.site.register(ProductionCompany,ProductionCompanyAdmin)
+admin.site.register(Distributor,DistributorAdmin)
 admin.site.register(LinkType)
 admin.site.register(Tag)
