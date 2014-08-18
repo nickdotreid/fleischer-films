@@ -38,13 +38,14 @@ class FilmAdmin(admin.ModelAdmin):
             	'production_company',
             	('year', 'release_date'),
             	'duration',
+                'description',
             	)
         }),
         ("Notes", {
             'fields': (
+                'have_it',
             	('original_distributor', 'current_distributor'),
             	'work_notes',
-            	'description',
             	'tags',
             	)
         }),

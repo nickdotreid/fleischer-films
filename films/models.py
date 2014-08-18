@@ -67,7 +67,6 @@ class Film(models.Model):
 
     production_company = models.ForeignKey(ProductionCompany, null=True, blank=True)
 
-
     current_distributor = models.ForeignKey(Distributor, related_name="current_films", null=True, blank=True)
     original_distributor = models.ForeignKey(Distributor, related_name="original_films", null=True, blank=True)
 
@@ -75,6 +74,8 @@ class Film(models.Model):
     duration = DurationField(null=True, blank=True)
 
     tags = models.ManyToManyField(Tag, blank=True, related_name='films')
+
+    have_it = models.BooleanField(default=False)
 
     work_notes = models.CharField(null=True, blank=True, max_length=5000)
 
@@ -121,6 +122,7 @@ class FilmLocation(models.Model):
     location = models.CharField(choices=LOCATION_TYPES, blank=True, null=True, max_length=150)
     source = models.CharField(max_length=200, blank=True, null=True)
     notes = models.CharField(max_length=2500, blank=True, null=True)
+    have_it = models.BooleanField(default=False)
 
     def __unicode__(self):
         return "%s, (%s)" % (self.film.title, self.location)
