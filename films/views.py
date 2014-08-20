@@ -13,7 +13,11 @@ def list_series(request):
         }, context_instance=RequestContext(request))
 
 def series(request, series_id):
-	return render_to_response('base.html',{
+	series = get_object_or_404(Series, id=series_id)
+	films = Film.objects.filter(series=series).all()
+	return render_to_response('series/view.html',{
+		'series':series,
+		'films':films,
         }, context_instance=RequestContext(request))
 
 def film(request, film_id):
