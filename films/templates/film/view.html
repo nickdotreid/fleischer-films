@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+	<div class="row">
+		<h1 class="title">{{film.title}} {% if film.year %}({{film.year}}){% endif %}</h1>
+		<div class="col-md-6">
+			{% if film.series %}
+				<p>Part of the series <a href="{% url 'films.views.series' film.series.id %}" >{{film.series.name}}</a></p>
+			{% endif %}
+			<dl>
+				<dt>Produced by</dt>
+				<dd>{{film.production_company}}</dd>
+			{% if film.current_distributor %}
+				<dt>Current Distributor</dt>
+				<dd>{{film.current_distributor.name}}</dd>
+			{% endif %}
+			{% if film.original_distributor %}
+				<dt>Original Distributor</dt>
+				<dd>{{film.original_distributor.name}}</dd>
+			{% endif %}
+			{% if film.release_date %}
+				<dt>Released on</dt>
+				<dd>{{ film.release_date|date }}</dd>				
+			{% endif %}
+			{% if film.duration %}
+				<dt>Runtime</dt>
+				<dd>{{film.duration}}</dd>
+			{% endif %}
+			</dl>
+			{% if links %}
+			<ul class="list-unstyled">
+				{% for link in links  %}
+					<li class="link link-type-{{link.type.name}}">
+						{% if link.href %}
+						<a href="{{link.href}}">{{link.description}}</a>
+						{% else %}
+						{{link.description}}
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+		</div>
+		<div class="col-md-6">
+			{{film.description|safe}}
+		</div>
+	</div>
+{% endblock content %}

@@ -5,7 +5,7 @@ import json
 
 from django.template import RequestContext
 
-from films.models import Series, Film
+from films.models import Series, Film, Link
 
 def list_series(request):
 	return render_to_response('series/list.html',{
@@ -21,5 +21,9 @@ def series(request, series_id):
         }, context_instance=RequestContext(request))
 
 def film(request, film_id):
-	return render_to_response('base.html',{
+	film = get_object_or_404(Film, id=film_id)
+	links = Link.objects.filter(film=film).all()
+	return render_to_response('film/view.html',{
+		'film':film,
+		'links':links
         }, context_instance=RequestContext(request))
