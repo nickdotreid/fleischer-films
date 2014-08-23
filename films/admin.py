@@ -42,6 +42,7 @@ class FilmAdmin(admin.ModelAdmin):
             	('year', 'release_date'),
             	'duration',
                 'description',
+                'crew_notes',
             	)
         }),
         ("Notes", {
