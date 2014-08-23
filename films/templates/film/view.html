@@ -44,8 +44,8 @@
 			{% endif %}
 		</div>
 		<div class="col-md-6">
-			{% thumbnail film.image "100x100" crop="center" as im %}
-				<img src="{{im.url}}" alt="" />
+			{% thumbnail film.image "600" crop="center" as im %}
+				<img src="{{im.url}}" alt="" width="100%" />
 			{% endthumbnail %}
 			<div class="description">
 				{{film.description|safe}}
