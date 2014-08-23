@@ -161,7 +161,7 @@ INSTALLED_APPS = (
     'suit',
     'suit_redactor',
     'django.contrib.admin',
-    'easy_thumbnails',
+    'sorl.thumbnail',
     "south",
     "herokuapp",
     "films",

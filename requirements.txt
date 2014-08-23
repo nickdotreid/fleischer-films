@@ -11,10 +11,10 @@ django-require-s3==1.0.0
 django-storages==1.1.8
 django-suit==0.2.9
 django-suit-redactor==0.0.2
-easy-thumbnails==2.1
 psycopg2==2.5.3
 pytz==2014.4
 sh==1.09
 six==1.7.3
+sorl-thumbnail==11.12
 waitress==0.8.9
 xlrd==0.9.3
