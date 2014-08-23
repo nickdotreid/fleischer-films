@@ -10,7 +10,7 @@ class Migration(DataMigration):
         for location in orm.FilmLocation.objects.all():
             if not location.location:
                 continue
-            location_type, created = orm.LocationType.get_or_create(name=location.location)
+            location_type, created = orm.LocationType.objects.get_or_create(name=location.location)
             location.source_type = location_type
             location.save()
 
