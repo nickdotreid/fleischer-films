@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 
+from easy_thumbnails.fields import ThumbnailerImageField
 from durationfield.db.models.fields.duration import DurationField
 
 YEARS = []
@@ -64,6 +65,8 @@ class Film(models.Model):
     release_date = models.DateField(null=True, blank=True)
     year = models.IntegerField(choices=YEARS, max_length=4, null=True, blank=True)
     series = models.ForeignKey(Series, null=True, blank=True)
+
+    image = ThumbnailerImageField(verbose_name=u'Featured Image', upload_to="film_images" ,null=True, blank=True)
 
     production_company = models.ForeignKey(ProductionCompany, null=True, blank=True)
 

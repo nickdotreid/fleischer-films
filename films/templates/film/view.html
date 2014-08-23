@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load thumbnail %}
 
 
 {% block content %}
@@ -44,7 +44,12 @@
 			{% endif %}
 		</div>
 		<div class="col-md-6">
-			{{film.description|safe}}
+			{% if film.image %}
+				<img src="{{ film.image|thumbnail_url:'thumbnail' }}" alt="" />
+			{% endif %}
+			<div class="description">
+				{{film.description|safe}}
+			</div>
 		</div>
 	</div>
 {% endblock content %}

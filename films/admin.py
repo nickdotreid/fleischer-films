@@ -40,6 +40,7 @@ class FilmAdmin(admin.ModelAdmin):
             	'series',
             	'production_company',
             	('year', 'release_date'),
+                'image',
             	'duration',
                 'description',
                 'crew_notes',
