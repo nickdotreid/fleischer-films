@@ -58,7 +58,6 @@ DATABASES = {
 # Use Amazon S3 for storage for uploaded media files.
 
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
-MEDIA_SERVE = False
 
 # Use Amazon S3 and RequireJS for static files storage.
 
@@ -90,6 +89,11 @@ AWS_REDUCED_REDUNDANCY = False
 AWS_IS_GZIPPED = False
 
 STATIC_URL = "https://{bucket_name}.s3.amazonaws.com/".format(
+    bucket_name = AWS_STORAGE_BUCKET_NAME,
+)
+
+MEDIA_SERVE = False
+MEDIA_URL = "https://{bucket_name}.s3.amazonaws.com/".format(
     bucket_name = AWS_STORAGE_BUCKET_NAME,
 )
 
