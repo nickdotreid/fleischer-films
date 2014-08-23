@@ -149,11 +149,15 @@ INSTALLED_APPS = (
     'suit',
     'suit_redactor',
     'django.contrib.admin',
+    'easy_thumbnails',
     "south",
     "herokuapp",
     "films",
 )
 
+SOUTH_MIGRATION_MODULES = {
+    'easy_thumbnails': 'easy_thumbnails.south_migrations',
+}
 
 # Additional static file locations.
 

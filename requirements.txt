@@ -1,7 +1,9 @@
 Django==1.6.5
+Pillow==2.5.3
 South==1.0
 boto==2.31.1
 dj-database-url==0.3.0
+django-bower==5.0.1
 django-durationfield==0.5.1
 django-herokuapp==0.9.18
 django-require==1.0.6
@@ -9,9 +11,10 @@ django-require-s3==1.0.0
 django-storages==1.1.8
 django-suit==0.2.9
 django-suit-redactor==0.0.2
+easy-thumbnails==2.1
 psycopg2==2.5.3
 pytz==2014.4
 sh==1.09
+six==1.7.3
 waitress==0.8.9
-wsgiref==0.1.2
 xlrd==0.9.3
