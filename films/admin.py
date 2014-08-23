@@ -4,7 +4,7 @@ from django import forms
 from suit.widgets import SuitDateWidget
 from suit_redactor.widgets import RedactorWidget
 
-from films.models import Film, Tag, LinkType, Link, Series, Distributor, ProductionCompany, FilmLocation, LocationType
+from films.models import Film, Tag, LinkType, Link, Series, Distributor, ProductionCompany, FilmLocation, LocationType, Role, Person, Crew
 
 class FilmLocation(admin.TabularInline):
     model = FilmLocation
@@ -18,6 +18,9 @@ class FilmAdminForm(forms.ModelForm):
             'description': RedactorWidget(editor_options={'lang': 'en'}),
             'release_date':SuitDateWidget,
         }
+
+class CrewInline(admin.TabularInline):
+    model = Crew
 
 class FilmAdmin(admin.ModelAdmin):
     date_hierarchy = 'release_date'
@@ -59,6 +62,7 @@ class FilmAdmin(admin.ModelAdmin):
     )
 
     inlines = [
+        CrewInline,
         FilmLocation,
     	LinkInline,
     ]
@@ -130,4 +134,6 @@ admin.site.register(ProductionCompany,ProductionCompanyAdmin)
 admin.site.register(Distributor,DistributorAdmin)
 admin.site.register(LinkType)
 admin.site.register(LocationType)
+admin.site.register(Person)
+admin.site.register(Role)
 admin.site.register(Tag)
