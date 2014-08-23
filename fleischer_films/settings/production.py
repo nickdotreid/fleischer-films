@@ -93,6 +93,14 @@ STATIC_URL = "https://{bucket_name}.s3.amazonaws.com/".format(
     bucket_name = AWS_STORAGE_BUCKET_NAME,
 )
 
+THUMBNAIL_ALIASES = {
+    '': {
+        'thumbnail': {
+            'size':(300,300),
+        },
+    },
+}
+
 
 # Email settings.
 
