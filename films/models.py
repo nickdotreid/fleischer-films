@@ -125,3 +125,24 @@ class FilmLocation(models.Model):
 
     def __unicode__(self):
         return "%s, (%s)" % (self.film.title, self.location)
+
+class Person(models.Model):
+    name = models.CharField(max_length=150)
+    notes = models.TextField()
+
+    def __unicode__(self):
+        return self.name
+
+class Role(models.Model):
+    name = models.CharField(max_length=150)
+
+    def __unicode__(self):
+        return self.name
+
+class Crew(models.Model):
+    film = models.ForeignKey(Film)
+    person = models.ForeignKey(Person)
+    role = models.ForeignKey(Role)
+
+    def __unicode__(self):
+        return "%s: %s (%s)" % (self.Film.title, self.person.name, self.role.name)
