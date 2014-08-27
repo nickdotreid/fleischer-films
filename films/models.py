@@ -132,7 +132,7 @@ class FilmLocation(models.Model):
 
 class Person(models.Model):
     name = models.CharField(max_length=150)
-    notes = models.TextField()
+    notes = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -150,4 +150,4 @@ class Crew(models.Model):
     notes = models.CharField(blank=True, null=True, max_length=50)
 
     def __unicode__(self):
-        return "%s: %s (%s)" % (self.Film.title, self.person.name, self.role.name)
+        return "%s: %s (%s)" % (self.film.title, self.person.name, self.role.name)
