@@ -13,6 +13,7 @@ urlpatterns = patterns("",
     
     # There's no favicon here!
     url(r"^favicon.ico$", generic.RedirectView.as_view()),
+    url(r'^search/', include('haystack.urls')),
     url(r"^", include('films.urls')),
 )
 

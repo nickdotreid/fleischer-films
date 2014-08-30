@@ -17,3 +17,4 @@ Thumbs.db
 /media
 /.anvil
 /pgdb
+/whoosh_index

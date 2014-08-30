@@ -163,6 +163,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'sorl.thumbnail',
     "south",
+    'haystack',
     "herokuapp",
     "films",
 )
@@ -243,6 +244,13 @@ CACHES = {
         "LOCATION": "staticfiles",
     },
 }
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}   
 
 
 # A secret key used for cryptographic algorithms.
