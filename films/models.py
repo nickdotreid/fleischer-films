@@ -128,7 +128,7 @@ class FilmLocation(models.Model):
     have_it = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return "%s, (%s)" % (self.film.title, self.location)
+        return "%s, %s (%s)" % (self.film.title, self.source, self.source_type.name)
 
 class Person(models.Model):
     name = models.CharField(max_length=150)
