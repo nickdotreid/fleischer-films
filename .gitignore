@@ -18,3 +18,4 @@ Thumbs.db
 /.anvil
 /pgdb
 /whoosh_index
+/components

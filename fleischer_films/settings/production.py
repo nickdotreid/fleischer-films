@@ -160,6 +160,7 @@ INSTALLED_APPS = (
     "django.contrib.staticfiles",
     'suit',
     'suit_redactor',
+    'djangobower',
     'django.contrib.admin',
     'sorl.thumbnail',
     "south",
@@ -173,11 +174,21 @@ SOUTH_MIGRATION_MODULES = {
 }
 
 # Additional static file locations.
-
 STATICFILES_DIRS = (
     os.path.join(SITE_ROOT, "static"),
 )
 
+STATICFILES_FINDERS = (
+    'djangobower.finders.BowerFinder',
+    )
+
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, "components")
+
+BOWER_INSTALLED_APPS = (
+    'jquery#1.9',
+    'underscore',
+    'bootstrap',
+)
 
 # Dispatch settings.
 
