@@ -79,7 +79,7 @@ class Film(models.Model):
     tags = models.ManyToManyField(Tag, blank=True, related_name='films')
 
     work_notes = models.CharField(null=True, blank=True, max_length=5000)
-    crew_notes = models.TextField(verbose_name="Cast and crew notes", null=True, blank=True)
+    crew_notes = models.TextField(verbose_name="Notes", null=True, blank=True)
 
     copyright_status = models.CharField(null=True, blank=True, max_length=250)
     copyright_status_source = models.CharField(null=True, blank=True, max_length=250)
