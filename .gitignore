@@ -19,3 +19,4 @@ Thumbs.db
 /pgdb
 /whoosh_index
 /components
+/node_modules
