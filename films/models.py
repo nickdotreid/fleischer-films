@@ -70,7 +70,7 @@ class Film(models.Model):
 
     production_company = models.ForeignKey(ProductionCompany, null=True, blank=True)
 
-    current_distributor = models.ForeignKey(Distributor, related_name="current_films", null=True, blank=True)
+    current_distributor = models.ForeignKey(Distributor, verbose_name='Additional distributor', related_name="current_films", null=True, blank=True)
     original_distributor = models.ForeignKey(Distributor, related_name="original_films", null=True, blank=True)
 
     description = models.CharField(null=True, blank=True, max_length=5000)
@@ -94,6 +94,7 @@ class LinkType(models.Model):
     class Meta:
         verbose_name = 'Link Type'
         verbose_name_plural = 'Link Types'
+        ordering = ['name']
 
     name = models.CharField(max_length=50)
 
@@ -115,6 +116,8 @@ class Link(models.Model):
         return "%s, (%s)" % (self.film.title, self.link_type.name)
 
 class LocationType(models.Model):
+    class Meta:
+        ordering = ['name']
     name = models.CharField(max_length=150)
 
     def __unicode__(self):
@@ -131,6 +134,8 @@ class FilmLocation(models.Model):
         return "%s, %s (%s)" % (self.film.title, self.source, self.source_type.name)
 
 class Person(models.Model):
+    class Meta:
+        ordering = ['name']
     name = models.CharField(max_length=150)
     notes = models.TextField(null=True, blank=True)
 
@@ -138,6 +143,8 @@ class Person(models.Model):
         return self.name
 
 class Role(models.Model):
+    class Meta:
+        ordering = ['name']
     name = models.CharField(max_length=150)
 
     def __unicode__(self):
