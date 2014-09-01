@@ -22,14 +22,53 @@ class FilmAdminForm(forms.ModelForm):
 class CrewInline(admin.TabularInline):
     model = Crew
 
+
+class FilmLocationFilter(admin.SimpleListFilter):
+    # Human-readable title which will be displayed in the
+    # right admin sidebar just above the filter options.
+    title = 'Film Location'
+
+    # Parameter for the filter that will be used in the URL query.
+    parameter_name = 'decade'
+
+    def lookups(self, request, model_admin):
+        """
+        Returns a list of tuples. The first element in each
+        tuple is the coded value for the option that will
+        appear in the URL query. The second element is the
+        human-readable name for the option that will appear
+        in the right sidebar.
+        """
+        return (
+            ('True', "Have it"),
+            ('False', "Don't have it"),
+        )
+
+    def queryset(self, request, queryset):
+        """
+        Returns the filtered queryset based on the value
+        provided in the query string and retrievable via
+        `self.value()`.
+        """
+        # Compare the requested value (either '80s' or '90s')
+        # to decide how to filter the queryset.
+        if self.value() == 'True':
+            return queryset.exclude(locations=None)
+        if self.value() == 'False':
+            return queryset.filter(locations=None)
+
 class FilmAdmin(admin.ModelAdmin):
     date_hierarchy = 'release_date'
     filter_horizontal = ('tags',)
 
-    search_fields = ('title', 'description', 'work_notes', 'series__name','tags__name', 'production_company__name', 'current_distributor__name', 'original_distributor__name')
+    search_fields = ('title', 'description', 'work_notes',
+        'series__name','tags__name', 'production_company__name',
+        'current_distributor__name', 'original_distributor__name',
+        'copyright_status__name', 'copyright_claimant',
+        )
 
     list_display = ('title','series','year', 'release_date')
-    list_filter = ('tags','year', 'series')
+    list_filter = ('tags','year', 'series', FilmLocationFilter)
 
     form = FilmAdminForm
 

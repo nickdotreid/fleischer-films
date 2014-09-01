@@ -132,7 +132,7 @@ class LocationType(models.Model):
         return self.name
 
 class FilmLocation(models.Model):
-    film = models.ForeignKey(Film)
+    film = models.ForeignKey(Film, related_name='locations')
     source_type = models.ForeignKey(LocationType, verbose_name="Source", blank=True, null=True)
     source = models.CharField(max_length=200, verbose_name="Location", blank=True, null=True)
     notes = models.CharField(max_length=2500, blank=True, null=True)
