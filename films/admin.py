@@ -116,6 +116,13 @@ class FilmAdmin(admin.ModelAdmin):
 
 admin.site.register(Film, FilmAdmin)
 
+class PeopleAdmin(admin.ModelAdmin):
+    inlines = [
+        CrewInline,
+    ]
+
+admin.site.register(Person, PeopleAdmin)
+
 class FilmInline(admin.TabularInline):
     model = Film
     fields = ('title','series','year')
@@ -135,8 +142,6 @@ def merge_models(modeladmin, request, queryset, film_property):
             })
     modeladmin.message_user(request, "Merged %d films" % (count))
     return modelMergedTo
-
-
 
 class AdminForInlineFilm(admin.ModelAdmin):
     inlines = [
@@ -169,13 +174,11 @@ class DistributorAdmin(admin.ModelAdmin):
         queryset.exclude(id=modelMergedTo.id).delete()
     merge_models.short_description = "Merge selected models"
 
-
 admin.site.register(Series,SeriesAdmin)
 admin.site.register(ProductionCompany,ProductionCompanyAdmin)
 admin.site.register(Distributor,DistributorAdmin)
 admin.site.register(LinkType)
 admin.site.register(LocationType)
-admin.site.register(Person)
 admin.site.register(Role)
 admin.site.register(Tag)
 admin.site.register(CopyrightStatus)
