@@ -1,0 +1,64 @@
+@bootstrapPath: "../../../../components/bower_components/bootstrap/";
+//something
+
+// Core variables and mixins
+@import "@{bootstrapPath}less/variables.less";
+@import "@{bootstrapPath}less/mixins.less";
+
+@import "variables.less";
+
+// Reset and dependencies
+@import "@{bootstrapPath}less/normalize.less";
+@import "@{bootstrapPath}less/print.less";
+@import "@{bootstrapPath}less/glyphicons.less";
+
+// Core CSS
+@import "@{bootstrapPath}less/scaffolding.less";
+@import "@{bootstrapPath}less/type.less";
+@import "@{bootstrapPath}less/code.less";
+@import "@{bootstrapPath}less/grid.less";
+@import "@{bootstrapPath}less/tables.less";
+@import "@{bootstrapPath}less/forms.less";
+@import "@{bootstrapPath}less/buttons.less";
+
+// Components
+@import "@{bootstrapPath}less/component-animations.less";
+@import "@{bootstrapPath}less/dropdowns.less";
+@import "@{bootstrapPath}less/button-groups.less";
+@import "@{bootstrapPath}less/input-groups.less";
+@import "@{bootstrapPath}less/navs.less";
+@import "@{bootstrapPath}less/navbar.less";
+@import "@{bootstrapPath}less/breadcrumbs.less";
+@import "@{bootstrapPath}less/pagination.less";
+@import "@{bootstrapPath}less/pager.less";
+@import "@{bootstrapPath}less/labels.less";
+@import "@{bootstrapPath}less/badges.less";
+@import "@{bootstrapPath}less/jumbotron.less";
+@import "@{bootstrapPath}less/thumbnails.less";
+@import "@{bootstrapPath}less/alerts.less";
+@import "@{bootstrapPath}less/progress-bars.less";
+@import "@{bootstrapPath}less/media.less";
+@import "@{bootstrapPath}less/list-group.less";
+@import "@{bootstrapPath}less/panels.less";
+@import "@{bootstrapPath}less/responsive-embed.less";
+@import "@{bootstrapPath}less/wells.less";
+@import "@{bootstrapPath}less/close.less";
+
+// Components w/ JavaScript
+@import "@{bootstrapPath}less/modals.less";
+@import "@{bootstrapPath}less/tooltip.less";
+@import "@{bootstrapPath}less/popovers.less";
+@import "@{bootstrapPath}less/carousel.less";
+
+// Utility classes
+@import "@{bootstrapPath}less/utilities.less";
+@import "@{bootstrapPath}less/responsive-utilities.less";
+
+
+@import "base.less";
+
+@largeScreenSize: (@largeSize + @spaceSize*2);
+
+@media screen and (min-width: @largeScreenSize){
+	@import "large.less";
+}

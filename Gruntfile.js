@@ -5,12 +5,13 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     less: {
-      options: {
-        compress: true,
-      },
-      files: {
-//        "fleischer_films/static/fleischer_studios/css/styles.css": "fleischer_films/static/fleischer_studios/less/styles.less"
-          'styles.css':'styles.less'
+      development:{
+        options: {
+          compress: true
+        },
+        files: {
+          "fleischer_films/static/fleischer_studios/css/styles.css": "fleischer_films/static/fleischer_studios/less/styles.less "
+        }        
       }
     },
     watch: {
