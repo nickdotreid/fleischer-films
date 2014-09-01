@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>The Fabulous Fleischer Film Database</h1>
+	<p>This is some place holder text describing the purpose of the website and what we home you (our visitor) will find here.</p>
+	<div class="row">
+		<div class="col-md-6">
+			<h2>Search the database</h2>
+			<p>Search form</p>
+		</div>
+		<div class="col-md-6">
+			<h2>Browse the database</h2>
+			<p>Not sure what you are looking for? Browse though the history of Fleischer Studios.</p>
+			<ul>
+				<li><a href="{% url 'series_list' %}">Series</a></li>
+				<li><a href="{% url 'person_list' %}">Cast and Crew</a></li>
+		</div>
+{% endblock content %}

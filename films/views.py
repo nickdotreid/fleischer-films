@@ -7,6 +7,10 @@ from django.template import RequestContext
 
 from films.models import Series, Film, Link, Person
 
+def home(request):
+	return render_to_response('home.html',{
+        }, context_instance=RequestContext(request))	
+
 def list_series(request):
 	return render_to_response('series/list.html',{
 		'series':Series.objects.all(),
@@ -19,6 +23,11 @@ def series(request, series_id):
 		'series':series,
 		'films':films,
         }, context_instance=RequestContext(request))
+
+def list_people(request):
+	return render_to_response('person/list.html',{
+		'people':Person.objects.all(),
+		}, context_instance=RequestContext(request))
 
 def person(request, person_id):
 	person = get_object_or_404(Person, id=person_id)
