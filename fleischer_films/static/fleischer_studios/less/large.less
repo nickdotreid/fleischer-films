@@ -1,25 +1,5 @@
-
-@verticalNavBarSpace: 75px;
 .container{
 	width:@largeSize;
 	margin-left:auto;
 	margin-right:auto;
-	padding-left:@verticalNavBarSpace;
-}
-
-.problem-card{
-	@problem_width: (@largeSize - 75px)/4 - @spaceSize;
-	float:left;
-	width: @problem_width;
-	padding-top: @problem_width - @spaceSize + @spaceSize;
-	img{
-		width:@problem_width - @spaceSize;
-		position:absolute;
-		top:@spaceSize/2;
-		left:@spaceSize/2;
-	}
-}
-
-.problem-fifth, .problem-first{
-	clear:left;
 }
