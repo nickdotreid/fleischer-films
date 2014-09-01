@@ -4,7 +4,7 @@ from django import forms
 from suit.widgets import SuitDateWidget
 from suit_redactor.widgets import RedactorWidget
 
-from films.models import Film, Tag, LinkType, Link, Series, Distributor, ProductionCompany, FilmLocation, LocationType, Role, Person, Crew
+from films.models import Film, Tag, LinkType, Link, Series, Distributor, ProductionCompany, FilmLocation, LocationType, Role, Person, Crew, CopyrightStatus
 
 class FilmLocation(admin.TabularInline):
     model = FilmLocation
@@ -139,3 +139,4 @@ admin.site.register(LocationType)
 admin.site.register(Person)
 admin.site.register(Role)
 admin.site.register(Tag)
+admin.site.register(CopyrightStatus)

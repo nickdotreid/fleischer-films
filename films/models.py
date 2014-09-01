@@ -53,6 +53,14 @@ class Series(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class CopyrightStatus(models.Model):
+    class Meta:
+        ordering = ['name']
+    name = models.CharField(max_length=250)
+
+    def __unicode__(self):
+        return self.name
     
 
 class Film(models.Model):
@@ -81,9 +89,9 @@ class Film(models.Model):
     work_notes = models.CharField(null=True, blank=True, max_length=5000)
     crew_notes = models.TextField(verbose_name="Notes", null=True, blank=True)
 
-    copyright_status = models.CharField(null=True, blank=True, max_length=250)
+    copyright_status = models.ForeignKey(CopyrightStatus, null=True, blank=True)
     copyright_status_source = models.CharField(null=True, blank=True, max_length=250)
-    copyright_claimant = models.CharField(null=True, blank=True, max_length=250)
+    copyright_claimant = models.TextField(verbose_name="Copyright details", null=True, blank=True)
 
     def __unicode__(self):
     	if self.year:
