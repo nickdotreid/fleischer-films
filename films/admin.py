@@ -44,6 +44,10 @@ class FilmResource(resources.ModelResource):
         if film.copyright_status:
             return film.copyright_status.name
         return None
+    def dehydrate_production_company(self, film):
+        if film.production_company:
+            return film.production_company.name
+        return None
 
 
 
