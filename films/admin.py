@@ -12,6 +12,40 @@ from import_export.admin import ImportExportModelAdmin
 class FilmResource(resources.ModelResource):    
     class Meta:
         model = Film
+        fields = (
+            'id','title','release_date','year','series', 'duration', 'tags',
+            'description', 'work_notes',
+            'production_company', 'current_distributor', 'original_distributor',
+            'copyright_status', 'copyright_status_source', 'copyright_claimant',
+            'crew_notes', 'crew',
+            )
+
+    crew = fields.Field(column_name='Cast and Crew')
+    def dehydrate_crew(self, film):
+        members = Crew.objects.filter(film=film).all()
+        return '\n'.join(["%s, %s" % (c.person.name, c.role.name) for c in members])
+
+    def dehydrate_tags(self, film):
+        return ', '.join([t.name for t in film.tags.all()])
+
+    def dehydrate_series(self,film):
+        if film.series:
+            return film.series.name
+        return None
+    def dehydrate_current_distributor(self, film):
+        if film.current_distributor:
+            return film.current_distributor.name
+        return None
+    def dehydrate_original_distributor(self, film):
+        if film.original_distributor:
+            return film.original_distributor.name
+        return None
+    def dehydrate_copyright_status(self,film):
+        if film.copyright_status:
+            return film.copyright_status.name
+        return None
+
+
 
 
 
@@ -69,7 +103,7 @@ class FilmLocationFilter(admin.SimpleListFilter):
 
 class FilmAdmin(ImportExportModelAdmin):
     resource_class = FilmResource
-    
+
     date_hierarchy = 'release_date'
     filter_horizontal = ('tags',)
 
