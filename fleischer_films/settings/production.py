@@ -165,6 +165,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     "south",
     'haystack',
+    'import_export',
     "herokuapp",
     "films",
 )

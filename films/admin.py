@@ -6,6 +6,16 @@ from suit_redactor.widgets import RedactorWidget
 
 from films.models import Film, Tag, LinkType, Link, Series, Distributor, ProductionCompany, FilmLocation, LocationType, Role, Person, Crew, CopyrightStatus
 
+from import_export import resources, fields
+from import_export.admin import ImportExportModelAdmin
+
+class FilmResource(resources.ModelResource):    
+    class Meta:
+        model = Film
+
+
+
+
 class FilmLocation(admin.TabularInline):
     model = FilmLocation
 
@@ -57,7 +67,9 @@ class FilmLocationFilter(admin.SimpleListFilter):
         if self.value() == 'False':
             return queryset.filter(locations=None)
 
-class FilmAdmin(admin.ModelAdmin):
+class FilmAdmin(ImportExportModelAdmin):
+    resource_class = FilmResource
+    
     date_hierarchy = 'release_date'
     filter_horizontal = ('tags',)
 
