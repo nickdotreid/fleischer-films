@@ -228,6 +228,7 @@ class DistributorAdmin(admin.ModelAdmin):
         modelMergedTo = merge_models(self, request, queryset, 'original_distributor')
         queryset.exclude(id=modelMergedTo.id).delete()
     merge_models.short_description = "Merge selected models"
+    search_fields = ('name',)
 
 admin.site.register(Series,SeriesAdmin)
 admin.site.register(ProductionCompany,ProductionCompanyAdmin)
