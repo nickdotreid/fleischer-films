@@ -161,8 +161,8 @@ class Role(models.Model):
         return self.name
 
 class Crew(models.Model):
-    film = models.ForeignKey(Film)
-    person = models.ForeignKey(Person)
+    film = models.ForeignKey(Film, related_name="crew")
+    person = models.ForeignKey(Person, related_name="credits")
     role = models.ForeignKey(Role)
     notes = models.CharField(blank=True, null=True, max_length=50)
 

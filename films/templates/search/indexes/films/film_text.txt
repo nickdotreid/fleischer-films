@@ -2,5 +2,8 @@
 {{object.description}}
 {{object.series.name}}
 {% for tag in object.tags.all %}
-	{{tag.name}}
+{{tag.name}}
+{% endfor %}
+{% for crew in object.crew.all %}
+{{crew.person.name}}
 {% endfor %}
