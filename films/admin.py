@@ -116,6 +116,7 @@ class FilmAdmin(ImportExportModelAdmin):
         'series__name','tags__name', 'production_company__name',
         'current_distributor__name', 'original_distributor__name',
         'copyright_status__name', 'copyright_claimant',
+        'crew__person__name',
         )
 
     list_display = ('title','series','year', 'release_date')
