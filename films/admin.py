@@ -68,6 +68,7 @@ class FilmAdminForm(forms.ModelForm):
         }
 
 class CrewInline(admin.TabularInline):
+    verbose_name_plural = "Cast and Crew"
     model = Crew
 
 
