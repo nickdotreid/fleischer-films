@@ -236,5 +236,8 @@ admin.site.register(Distributor,DistributorAdmin)
 admin.site.register(LinkType)
 admin.site.register(LocationType)
 admin.site.register(Role)
-admin.site.register(Tag)
+
+class TagAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
+admin.site.register(Tag, TagAdmin)
 admin.site.register(CopyrightStatus)
