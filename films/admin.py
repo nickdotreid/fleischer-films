@@ -169,6 +169,9 @@ class FilmAdmin(ImportExportModelAdmin):
 admin.site.register(Film, FilmAdmin)
 
 class PeopleAdmin(admin.ModelAdmin):
+
+    search_fields = ('name',)
+
     inlines = [
         CrewInline,
     ]
