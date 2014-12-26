@@ -144,6 +144,7 @@ class FilmLocation(models.Model):
 class Person(models.Model):
     class Meta:
         ordering = ['name']
+        verbose_name_plural = "People"
     name = models.CharField(max_length=150)
     notes = models.TextField(null=True, blank=True)
 
