@@ -79,6 +79,7 @@ class Film(models.Model):
 
     production_company = models.ForeignKey(ProductionCompany, null=True, blank=True)
 
+    distributors = models.ManyToManyField(Distributor, through="DistributorInformation")
     current_distributor = models.ForeignKey(Distributor, verbose_name='Additional distributor', related_name="current_films", null=True, blank=True)
     original_distributor = models.ForeignKey(Distributor, related_name="original_films", null=True, blank=True)
 
@@ -98,6 +99,23 @@ class Film(models.Model):
     	if self.year:
     		return "%s (%d)" % (self.title, self.year)
         return self.title
+
+class DistributorInformation(models.Model):
+    class Meta:
+        verbose_name = "Distributor Information"
+        verbose_name_plural = "Distributor Information"
+
+    film = models.ForeignKey(Film)
+    distributor = models.ForeignKey(Distributor)
+
+    start_year = models.IntegerField(choices=YEARS, max_length=4, null=True, blank=True)
+    end_year = models.IntegerField(choices=YEARS, max_length=4, null=True, blank=True)
+
+    original = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return "%s (%s)" % (self.distributor.name,self.film.title)
+    
 
 class LinkType(models.Model):
     class Meta:
