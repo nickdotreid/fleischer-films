@@ -57,7 +57,7 @@ class Series(models.Model):
 class CopyrightStatus(models.Model):
     class Meta:
         ordering = ['name']
-        verbose_name_plural = "Copyright Statuses"
+        verbose_name_plural = "Copyright Status"
     name = models.CharField(max_length=250)
 
     def __unicode__(self):
