@@ -15,7 +15,7 @@ class FilmResource(resources.ModelResource):
         fields = (
             'id','title','release_date','year','series', 'duration', 'tags',
             'description', 'work_notes',
-            'production_company', 'current_distributor', 'original_distributor',
+            'production_company', 'original_distributor',
             'copyright_status', 'copyright_status_source', 'copyright_claimant',
             'crew_notes', 'crew',
             )
@@ -31,10 +31,6 @@ class FilmResource(resources.ModelResource):
     def dehydrate_series(self,film):
         if film.series:
             return film.series.name
-        return None
-    def dehydrate_current_distributor(self, film):
-        if film.current_distributor:
-            return film.current_distributor.name
         return None
     def dehydrate_original_distributor(self, film):
         if film.original_distributor:
@@ -114,7 +110,7 @@ class FilmAdmin(ImportExportModelAdmin):
 
     search_fields = ('title', 'description', 'work_notes',
         'series__name','tags__name', 'production_company__name',
-        'current_distributor__name', 'original_distributor__name',
+        'original_distributor__name', 'distributors__distributor__name',
         'copyright_status__name', 'copyright_claimant',
         'crew__person__name',
         )
@@ -139,7 +135,7 @@ class FilmAdmin(ImportExportModelAdmin):
         }),
         ("Notes", {
             'fields': (
-            	('original_distributor', 'current_distributor'),
+            	'original_distributor',
             	'work_notes',
             	'tags',
             	)

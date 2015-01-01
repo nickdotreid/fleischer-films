@@ -80,7 +80,6 @@ class Film(models.Model):
     production_company = models.ForeignKey(ProductionCompany, null=True, blank=True)
 
     distributors = models.ManyToManyField(Distributor, through="DistributorInformation")
-    current_distributor = models.ForeignKey(Distributor, verbose_name='Additional distributor', related_name="current_films", null=True, blank=True)
     original_distributor = models.ForeignKey(Distributor, related_name="original_films", null=True, blank=True)
 
     description = models.CharField(null=True, blank=True, max_length=5000)
@@ -110,8 +109,6 @@ class DistributorInformation(models.Model):
 
     start_year = models.IntegerField(choices=YEARS, max_length=4, null=True, blank=True)
     end_year = models.IntegerField(choices=YEARS, max_length=4, null=True, blank=True)
-
-    original = models.BooleanField(default=False)
 
     def __unicode__(self):
         return "%s (%s)" % (self.distributor.name,self.film.title)
