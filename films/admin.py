@@ -4,7 +4,7 @@ from django import forms
 from suit.widgets import SuitDateWidget
 from suit_redactor.widgets import RedactorWidget
 
-from films.models import Film, Tag, LinkType, Link, Series, Distributor, ProductionCompany, FilmLocation, LocationType, Role, Person, Crew, CopyrightStatus
+from films.models import Film, Tag, LinkType, Link, Series, Distributor, DistributorInformation, ProductionCompany, FilmLocation, LocationType, Role, Person, Crew, CopyrightStatus
 
 from import_export import resources, fields
 from import_export.admin import ImportExportModelAdmin
@@ -50,8 +50,8 @@ class FilmResource(resources.ModelResource):
         return None
 
 
-
-
+class DistributorInline(admin.TabularInline):
+    model = DistributorInformation
 
 
 class FilmLocation(admin.TabularInline):
@@ -155,6 +155,7 @@ class FilmAdmin(ImportExportModelAdmin):
     )
 
     inlines = [
+        DistributorInline,
         CrewInline,
         FilmLocation,
     	LinkInline,
